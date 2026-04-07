@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './TerminalCursor.module.css';
 
+// Move chars outside component so it's stable
+const CHARS = ['0', '1', '$', '#', '@', '&', '%', '>', '<', '/', '\\'];
+
 const TerminalCursor = () => {
   const [particles, setParticles] = useState([]);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // Move chars array inside useCallback dependency
   const addParticle = useCallback((x, y) => {
-    const chars = ['0', '1', '$', '#', '@', '&', '%', '>', '<', '/', '\\'];
     const id = Date.now() + Math.random();
-    const char = chars[Math.floor(Math.random() * chars.length)];
+    const char = CHARS[Math.floor(Math.random() * CHARS.length)];
     
     setParticles(prev => [...prev, { id, x, y, char }]);
     
     setTimeout(() => {
       setParticles(prev => prev.filter(p => p.id !== id));
     }, 800);
-  }, []); // No external dependencies needed
+  }, []);
 
   useEffect(() => {
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -35,7 +36,7 @@ const TerminalCursor = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [addParticle]); // addParticle is now properly included
+  }, [addParticle]);
 
   if (isTouchDevice) return null;
 
