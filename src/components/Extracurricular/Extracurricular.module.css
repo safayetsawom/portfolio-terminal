@@ -1,0 +1,185 @@
+.section {
+  padding: 100px 24px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #00ffcc;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 12px;
+}
+
+.timeline {
+  position: relative;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timelineMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+}
+
+.markerDot {
+  width: 12px;
+  height: 12px;
+  background: #00ffcc;
+  border: 2px solid #0a0a0f;
+  box-shadow: 0 0 10px #00ffcc;
+  z-index: 2;
+}
+
+.markerLine {
+  width: 1px;
+  flex: 1;
+  background: #1a1a2e;
+  margin-top: 8px;
+}
+
+.timelineItem:last-child .markerLine {
+  display: none;
+}
+
+.timelineContent {
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.orgName {
+  color: #00ffcc;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.duration {
+  color: #666;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.role {
+  color: #b0b0b0;
+  font-size: 15px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.contributions {
+  list-style: none;
+}
+
+.contributions li {
+  color: #e0e0e0;
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.portfolioLink {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(0, 255, 204, 0.03);
+  border-left: 3px solid #00ffcc;
+  font-size: 14px;
+}
+
+.link {
+  color: #00ffcc;
+  text-decoration: none;
+  margin-left: 15px;
+  border-bottom: 1px dashed #00ffcc;
+  transition: border 0.2s;
+}
+
+.link:hover {
+  border-bottom-style: solid;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .timelineItem {
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  
+  .orgName {
+    font-size: 15px;
+  }
+  
+  .duration {
+    font-size: 11px;
+  }
+  
+  .role {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  
+  .contributions li {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .portfolioLink {
+    padding: 16px;
+    font-size: 12px;
+  }
+  
+  .link {
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentHeader {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .orgName {
+    font-size: 14px;
+  }
+  
+  .contributions li {
+    font-size: 11px;
+  }
+}

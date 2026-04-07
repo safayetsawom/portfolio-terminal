@@ -1,0 +1,194 @@
+.section {
+  padding: 100px 24px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #00ffcc;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 12px;
+}
+
+.projectsList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.projectCard {
+  display: flex;
+  gap: 24px;
+  background: rgba(10, 10, 15, 0.6);
+  border: 1px solid #1a1a2e;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.projectCard:hover {
+  border-color: #00ffcc;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+}
+
+.projectIndex {
+  color: #00ffcc;
+  font-size: 14px;
+  opacity: 0.7;
+  min-width: 40px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.projectContent {
+  flex: 1;
+}
+
+.projectName {
+  color: #00ffcc;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.projectDesc {
+  color: #b0b0b0;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.techChip {
+  background: #1a1a2e;
+  color: #00ffcc;
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid #2a2a4e;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.projectFooter {
+  padding-top: 15px;
+  border-top: 1px solid #1a1a2e;
+}
+
+.repoLink {
+  color: #666;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  word-break: break-all;
+}
+
+.repoLink:hover {
+  color: #00ffcc;
+}
+
+.repoLink .prompt {
+  margin-right: 6px;
+}
+
+.note {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(0, 255, 204, 0.03);
+  border-left: 3px solid #00ffcc;
+  font-size: 14px;
+}
+
+.noteText {
+  color: #b0b0b0;
+}
+
+.link {
+  color: #00ffcc;
+  text-decoration: none;
+  margin-left: 10px;
+  border-bottom: 1px dashed #00ffcc;
+}
+
+.link:hover {
+  border-bottom-style: solid;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .projectCard {
+    flex-direction: column;
+    padding: 18px;
+    gap: 10px;
+  }
+  
+  .projectIndex {
+    min-width: auto;
+    font-size: 12px;
+  }
+  
+  .projectName {
+    font-size: 16px;
+  }
+  
+  .projectDesc {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  .techChip {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+  
+  .repoLink {
+    font-size: 11px;
+  }
+  
+  .note {
+    padding: 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectCard {
+    padding: 14px;
+  }
+  
+  .projectName {
+    font-size: 15px;
+  }
+  
+  .projectDesc {
+    font-size: 12px;
+  }
+  
+  .techChip {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+}

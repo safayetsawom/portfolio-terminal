@@ -1,0 +1,195 @@
+.section {
+  padding: 100px 24px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #00ffcc;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 12px;
+}
+
+.contactCard {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+}
+
+.cardHeader {
+  background: #1a1a2e;
+  padding: 16px 24px;
+  border-bottom: 1px solid #00ffcc;
+  color: #00ffcc;
+  font-size: 14px;
+}
+
+.bracket {
+  color: #666;
+  margin: 0 8px;
+}
+
+.cardBody {
+  padding: 30px;
+}
+
+.contactRow {
+  display: flex;
+  padding: 16px 0;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.contactRow:last-of-type {
+  border-bottom: none;
+}
+
+.label {
+  width: 100px;
+  color: #00ffcc;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.value {
+  flex: 1;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.2s;
+}
+
+.value:hover {
+  color: #00ffcc;
+}
+
+.arrow {
+  color: #00ffcc;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.2s;
+}
+
+.value:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cardFooter {
+  background: rgba(0, 255, 204, 0.05);
+  padding: 16px 24px;
+  border-top: 1px solid #1a1a2e;
+  color: #00ffcc;
+  font-size: 14px;
+}
+
+.status {
+  color: #e0e0e0;
+}
+
+.signature {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.signatureBox {
+  text-align: center;
+  padding: 30px;
+  border: 2px solid #00ffcc;
+  display: inline-block;
+  background: rgba(0, 255, 204, 0.03);
+}
+
+.signatureName {
+  font-size: 48px;
+  font-weight: 400;
+  color: #00ffcc;
+  letter-spacing: 15px;
+  margin: 15px 0 10px;
+  text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.signatureTitle {
+  color: #666;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .contactRow {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 0;
+  }
+  
+  .label {
+    width: auto;
+    font-size: 12px;
+  }
+  
+  .value {
+    font-size: 13px;
+  }
+  
+  .cardBody {
+    padding: 20px;
+  }
+  
+  .cardHeader {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  
+  .cardFooter {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  
+  .signatureName {
+    font-size: 32px;
+    letter-spacing: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .value {
+    font-size: 12px;
+  }
+  
+  .arrow {
+    display: none;
+  }
+  
+  .signatureName {
+    font-size: 24px;
+    letter-spacing: 5px;
+  }
+  
+  .signatureBox {
+    padding: 20px;
+  }
+}

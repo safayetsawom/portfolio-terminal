@@ -1,0 +1,253 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 24px 40px;
+  position: relative;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.asciiBg {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: 12px;
+  color: #1a1a2e;
+  opacity: 0.5;
+  z-index: 1;
+  line-height: 1.8;
+}
+
+.hexagon {
+  position: relative;
+  width: 380px;
+  height: 320px;
+  margin: 0 auto;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  background: #0a0a0f;
+  /* border removed - clean hexagon shape */
+  box-shadow: 
+    0 0 30px rgba(0, 255, 204, 0.3),
+    inset 0 0 30px rgba(0, 255, 204, 0.1);
+  transition: all 0.3s ease;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.hexagon:hover {
+  box-shadow: 
+    0 0 50px rgba(0, 255, 204, 0.5),
+    inset 0 0 50px rgba(0, 255, 204, 0.2);
+  transform: scale(1.02);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  filter: grayscale(30%) contrast(1.1);
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 255, 204, 0.4);
+  box-shadow: 0 0 20px #00ffcc;
+  animation: scan 8s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.glitchBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ff3366;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  opacity: 0;
+  animation: glitch 3s infinite;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes glitch {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  1%, 3% { opacity: 0.5; transform: translate(-2px, 0); }
+  2%, 4% { opacity: 0.5; transform: translate(2px, 0); }
+}
+
+.imageCaption {
+  margin-top: 20px;
+  text-align: center;
+  color: #00ffcc;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 8px;
+}
+
+.terminalWindow {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.terminalHeader {
+  background: #1a1a2e;
+  padding: 12px 20px;
+  border-bottom: 1px solid #00ffcc;
+  color: #00ffcc;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.terminalHeader span::before {
+  content: "┌─[";
+  color: #666;
+  margin-right: 8px;
+}
+
+.terminalBody {
+  padding: 30px;
+}
+
+.command {
+  margin-bottom: 8px;
+  color: #00ffcc;
+}
+
+.typed {
+  color: #e0e0e0;
+}
+
+.cursor {
+  color: #00ffcc;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.output {
+  margin-bottom: 24px;
+  margin-left: 20px;
+  color: #b0b0b0;
+  line-height: 1.8;
+}
+
+.statusOutput {
+  margin-left: 20px;
+  padding: 12px;
+  background: rgba(0, 255, 204, 0.05);
+  border-left: 3px solid #00ffcc;
+  color: #00ffcc;
+}
+
+.blink {
+  animation: blink 1.5s infinite;
+  margin-right: 8px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hexagon {
+    width: 320px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 70px 16px 40px;
+    min-height: auto;
+  }
+  
+  .hexagon {
+    width: 260px;
+    height: 230px;
+  }
+  
+  .terminalBody {
+    padding: 16px;
+  }
+  
+  .output {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  .command {
+    font-size: 13px;
+  }
+  
+  .imageCaption {
+    font-size: 11px;
+  }
+  
+  .asciiBg {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hexagon {
+    width: 220px;
+    height: 200px;
+  }
+  
+  .terminalHeader {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  .terminalBody {
+    padding: 14px;
+  }
+  
+  .output {
+    font-size: 12px;
+    margin-left: 12px;
+  }
+  
+  .statusOutput {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

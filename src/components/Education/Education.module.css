@@ -1,0 +1,152 @@
+.section {
+  padding: 100px 24px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #00ffcc;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 12px;
+}
+
+.educationCard {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+  max-width: 800px;
+}
+
+.cardHeader {
+  background: #1a1a2e;
+  padding: 16px 24px;
+  border-bottom: 1px solid #00ffcc;
+  color: #00ffcc;
+  font-size: 18px;
+}
+
+.bracket {
+  color: #666;
+  margin: 0 8px;
+}
+
+.cardBody {
+  padding: 30px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.infoRow:last-of-type {
+  border-bottom: none;
+}
+
+.label {
+  width: 120px;
+  color: #00ffcc;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.value {
+  color: #e0e0e0;
+  font-size: 16px;
+}
+
+.highlight {
+  color: #00ffcc;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.muted {
+  color: #666;
+  font-size: 14px;
+  margin-left: 12px;
+}
+
+.progressBar {
+  margin-top: 20px;
+  background: #1a1a2e;
+  height: 24px;
+  border: 1px solid #00ffcc;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffcc 0%, #00ccaa 100%);
+  position: relative;
+  animation: fillProgress 1.5s ease-out;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+@keyframes fillProgress {
+  from { width: 0%; opacity: 0.5; }
+  to { width: 100%; opacity: 1; }
+}
+
+.progressText {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0a0a0f;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cardFooter {
+  background: rgba(0, 255, 204, 0.05);
+  padding: 16px 24px;
+  border-top: 1px solid #1a1a2e;
+  color: #00ffcc;
+  font-size: 14px;
+}
+
+.status {
+  color: #00ffcc;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 22px;
+  }
+  
+  .infoRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .label {
+    width: auto;
+  }
+  
+  .muted {
+    margin-left: 0;
+    margin-top: 5px;
+    display: block;
+  }
+}

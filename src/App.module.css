@@ -1,0 +1,192 @@
+.app {
+  min-height: 100vh;
+  background: #0a0a0f;
+  background-image: 
+    linear-gradient(rgba(0, 255, 204, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 204, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #00ffcc;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+}
+
+.terminalBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.terminalDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  background: #00ffcc;
+  opacity: 0.8;
+}
+
+.terminalDot:nth-child(2) {
+  background: #ffcc00;
+}
+
+.terminalDot:nth-child(3) {
+  background: #ff3366;
+}
+
+.terminalPath {
+  margin-left: 16px;
+  color: #00ffcc;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.terminalPath::before {
+  content: "┌─[";
+  color: #666;
+}
+
+.terminalPath::after {
+  content: "]";
+  color: #666;
+}
+
+.nav {
+  display: flex;
+  margin-left: auto;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.navItem {
+  background: transparent;
+  border: 1px solid #1a1a2e;
+  color: #e0e0e0;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.navItem:hover {
+  background: rgba(0, 255, 204, 0.1);
+  border-color: #00ffcc;
+  color: #00ffcc;
+  transform: translateY(-1px);
+}
+
+.navItem:active {
+  transform: translateY(0);
+}
+
+.navPrompt {
+  color: #00ffcc;
+  margin-right: 6px;
+  opacity: 0.7;
+}
+
+.navItem:hover .navPrompt {
+  opacity: 1;
+}
+
+.main {
+  padding-top: 60px;
+}
+
+.footer {
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 1px solid #1a1a2e;
+  color: #666;
+  font-size: 13px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 8px;
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .terminalBar {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminalPath {
+    font-size: 10px;
+    margin-left: 6px;
+  }
+  
+  .terminalPath::before,
+  .terminalPath::after {
+    display: none;
+  }
+  
+  .nav {
+    gap: 5px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .navItem {
+    padding: 5px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  
+  .terminalDot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .footer {
+    padding: 30px 16px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminalBar {
+    padding: 8px 12px;
+  }
+  
+  .terminalPath {
+    font-size: 9px;
+  }
+  
+  .navItem {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  .navPrompt {
+    margin-right: 4px;
+  }
+}
