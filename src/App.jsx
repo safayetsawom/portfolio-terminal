@@ -6,6 +6,7 @@ import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
 import Certifications from './components/Certifications/Certifications';
 import Extracurricular from './components/Extracurricular/Extracurricular';
+import SoftSkills from './components/SoftSkills/SoftSkills';
 import Contact from './components/Contact/Contact';
 import TerminalCursor from './components/TerminalCursor/TerminalCursor';
 
@@ -47,6 +48,9 @@ function App() {
             <button onClick={() => scrollToSection('extracurricular')} className={styles.navItem}>
               <span className={styles.navPrompt}>$</span> extra
             </button>
+            <button onClick={() => scrollToSection('softskills')} className={styles.navItem}>
+              <span className={styles.navPrompt}>$</span> soft
+            </button>
             <button onClick={() => scrollToSection('contact')} className={styles.navItem}>
               <span className={styles.navPrompt}>$</span> contact
             </button>
@@ -61,11 +65,12 @@ function App() {
         <Projects />
         <Certifications />
         <Extracurricular />
+        <SoftSkills />
         <Contact />
       </main>
 
       <footer className={styles.footer}>
-        <span className={styles.prompt}>$</span> echo "© 2026 Md. Safayet Hossain Sawom | All rights reserved"
+        <span className={styles.prompt}>$</span> echo "© 2026 Safayet Hossain Sawom | All rights reserved"
       </footer>
     </div>
   );
