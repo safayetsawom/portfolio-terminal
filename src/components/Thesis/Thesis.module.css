@@ -1,0 +1,377 @@
+.section {
+  padding: 100px 24px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: #00ffcc;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ffcc;
+  margin-right: 12px;
+}
+
+/* Main Card */
+.thesisCard {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.1);
+  margin-bottom: 30px;
+}
+
+.cardHeader {
+  background: #1a1a2e;
+  padding: 16px 24px;
+  border-bottom: 1px solid #00ffcc;
+  color: #00ffcc;
+  font-size: 16px;
+}
+
+.bracket {
+  color: #666;
+  margin: 0 8px;
+}
+
+.cardBody {
+  padding: 30px;
+}
+
+.thesisTitle {
+  color: #00ffcc;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.thesisAbstract {
+  color: #b0b0b0;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: #00ffcc;
+  font-weight: 500;
+}
+
+.classTag {
+  display: inline-block;
+  background: #1a1a2e;
+  color: #00ffcc;
+  padding: 2px 10px;
+  margin: 0 4px;
+  font-size: 13px;
+  border: 1px solid #2a2a4e;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.metricCard {
+  background: rgba(0, 255, 204, 0.03);
+  border: 1px solid #1a1a2e;
+  padding: 20px 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.metricCard:hover {
+  border-color: #00ffcc;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.1);
+}
+
+.metricIcon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.metricValue {
+  display: block;
+  color: #00ffcc;
+  font-size: 28px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 5px;
+}
+
+.metricLabel {
+  color: #666;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Comparison Section */
+.comparisonSection {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.subHeading {
+  color: #00ffcc;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.comparisonTable {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #1a1a2e;
+  padding: 5px 0;
+}
+
+.comparisonRow {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+}
+
+.highlightRow {
+  background: rgba(0, 255, 204, 0.05);
+  border-left: 3px solid #00ffcc;
+}
+
+.modelName {
+  width: 150px;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow {
+  color: #00ffcc;
+  font-size: 12px;
+}
+
+.modelAccuracy {
+  width: 70px;
+  color: #00ffcc;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.accuracyBar {
+  flex: 1;
+  height: 8px;
+  background: #1a1a2e;
+  position: relative;
+}
+
+.accuracyFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffcc 0%, #00ccaa 100%);
+  animation: fillBar 1s ease-out;
+}
+
+@keyframes fillBar {
+  from { width: 0%; }
+}
+
+.comparisonNote {
+  color: #888;
+  font-size: 13px;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+/* XAI Section */
+.xaiSection {
+  margin-bottom: 25px;
+}
+
+.xaiText {
+  color: #b0b0b0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.xaiMethod {
+  display: inline-block;
+  background: #1a1a2e;
+  color: #ffcc00;
+  padding: 2px 10px;
+  margin: 0 5px;
+  font-size: 13px;
+  border: 1px solid #ffcc00;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Impact Box */
+.impactBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(0, 255, 204, 0.03);
+  border-left: 3px solid #00ffcc;
+  margin-top: 20px;
+}
+
+.impactIcon {
+  font-size: 24px;
+}
+
+.impactText {
+  color: #e0e0e0;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Card Footer */
+.cardFooter {
+  background: rgba(0, 255, 204, 0.05);
+  padding: 16px 24px;
+  border-top: 1px solid #1a1a2e;
+  color: #00ffcc;
+  font-size: 14px;
+}
+
+.status {
+  color: #e0e0e0;
+}
+
+/* Keywords */
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.tag {
+  background: #1a1a2e;
+  color: #00ffcc;
+  padding: 5px 14px;
+  font-size: 12px;
+  border: 1px solid #2a2a4e;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.tag:hover {
+  background: #00ffcc;
+  color: #0a0a0f;
+  border-color: #00ffcc;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .cardBody {
+    padding: 20px;
+  }
+  
+  .thesisTitle {
+    font-size: 18px;
+  }
+  
+  .thesisAbstract {
+    font-size: 13px;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .metricValue {
+    font-size: 22px;
+  }
+  
+  .comparisonRow {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  
+  .modelName {
+    width: 120px;
+    font-size: 12px;
+  }
+  
+  .modelAccuracy {
+    width: 60px;
+    font-size: 12px;
+  }
+  
+  .xaiText {
+    font-size: 13px;
+  }
+  
+  .impactText {
+    font-size: 13px;
+  }
+  
+  .cardFooter {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thesisTitle {
+    font-size: 16px;
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparisonRow {
+    flex-wrap: wrap;
+  }
+  
+  .modelName {
+    width: 100%;
+  }
+  
+  .accuracyBar {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  .classTag {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+}

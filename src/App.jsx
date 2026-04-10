@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import HeroSection from './components/HeroSection/HeroSection';
 import Education from './components/Education/Education';
 import Skills from './components/Skills/Skills';
+import Thesis from './components/Thesis/Thesis';
 import Projects from './components/Projects/Projects';
 import Certifications from './components/Certifications/Certifications';
 import Extracurricular from './components/Extracurricular/Extracurricular';
@@ -39,6 +40,9 @@ function App() {
             <button onClick={() => scrollToSection('skills')} className={styles.navItem}>
               <span className={styles.navPrompt}>$</span> skills
             </button>
+            <button onClick={() => scrollToSection('thesis')} className={styles.navItem}>
+              <span className={styles.navPrompt}>$</span> thesis
+            </button>
             <button onClick={() => scrollToSection('projects')} className={styles.navItem}>
               <span className={styles.navPrompt}>$</span> projects
             </button>
@@ -62,6 +66,7 @@ function App() {
         <HeroSection />
         <Education />
         <Skills />
+        <Thesis />
         <Projects />
         <Certifications />
         <Extracurricular />
