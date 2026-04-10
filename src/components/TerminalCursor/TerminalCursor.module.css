@@ -1,47 +1,53 @@
-.matrixChar {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  color: #00ffcc;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  text-shadow: 
-    0 0 8px #00ffcc,
-    0 0 15px rgba(0, 255, 204, 0.5);
-  animation: matrixFall 1.8s ease-out forwards;
-  will-change: transform, opacity;
-  transform-origin: center;
+/* Terminal Block Cursor - Native CSS (Zero Lag) */
+
+/* Default cursor: Hollow cyan square */
+.terminalCursor,
+.terminalCursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='16' height='16' fill='none' stroke='%2300ffcc' stroke-width='1.5' opacity='0.9'/%3E%3Crect x='5' y='5' width='12' height='12' fill='%2300ffcc' opacity='0.15'/%3E%3C/svg%3E") 12 12, text !important;
 }
 
-@keyframes matrixFall {
-  0% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-  20% {
-    opacity: 0.8;
-    transform: translate(-50%, -40%) scale(1);
-  }
-  60% {
-    opacity: 0.4;
-    transform: translate(-50%, 10px) scale(0.8);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, 50px) scale(0.4);
-  }
+/* Clickable elements: Solid cyan square */
+.terminalCursor a,
+.terminalCursor button,
+.terminalCursor [role="button"],
+.terminalCursor .clickable,
+.terminalCursor input,
+.terminalCursor select,
+.terminalCursor textarea,
+.terminalCursor [onclick] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='16' height='16' fill='%2300ffcc' stroke='%2300ffcc' stroke-width='1.5' opacity='0.85'/%3E%3C/svg%3E") 12 12, pointer !important;
 }
 
-/* Optional: Add a subtle glow trail */
-.matrixChar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0, 255, 204, 0.3) 0%, transparent 70%);
-  filter: blur(4px);
-  z-index: -1;
+/* Hover on interactive elements - brighter solid block */
+.terminalCursor a:hover,
+.terminalCursor button:hover,
+.terminalCursor [role="button"]:hover,
+.terminalCursor .clickable:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='16' height='16' fill='%2300ffcc' stroke='%2300ffcc' stroke-width='2' opacity='1'/%3E%3C/svg%3E") 12 12, pointer !important;
+}
+
+/* Text selection cursor - I-beam with cyan accent */
+.terminalCursor p,
+.terminalCursor span,
+.terminalCursor h1,
+.terminalCursor h2,
+.terminalCursor h3,
+.terminalCursor h4,
+.terminalCursor h5,
+.terminalCursor h6,
+.terminalCursor li,
+.terminalCursor td,
+.terminalCursor th,
+.terminalCursor label {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect x='8' y='2' width='2' height='14' fill='%2300ffcc' opacity='0.7'/%3E%3C/svg%3E") 10 10, text !important;
+}
+
+/* Fallback for browsers that don't support SVG cursors */
+.terminalCursor {
+  cursor: crosshair;
+}
+
+.terminalCursor a,
+.terminalCursor button {
+  cursor: pointer;
 }
