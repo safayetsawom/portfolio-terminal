@@ -30,7 +30,7 @@ const HeroSection = () => {
               <pre>{`<!-- -->`}</pre>
             </div>
             <div className={styles.hexagon}>
-              <div className={styles.scanline}></div>
+              {/* The scanline div has been REMOVED from here */}
               <img 
                 src="/profile.png" 
                 alt="MD. Safayet Hossain Sawom"
