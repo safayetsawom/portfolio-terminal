@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Analytics } from '@vercel/analytics/react';  // ← ADD THIS LINE
+import { Analytics } from '@vercel/analytics/react';
 import styles from './App.module.css';
 import HeroSection from './components/HeroSection/HeroSection';
 import Education from './components/Education/Education';
@@ -99,8 +99,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      {/* Vercel Analytics - Add this line somewhere inside the div */}
-      <Analytics />  {/* ← ADD THIS LINE */}
+      <Analytics />
 
       <div className={styles.scanlines} aria-hidden="true" />
       <div className={styles.orb1} aria-hidden="true" />
