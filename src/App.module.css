@@ -1,4 +1,3 @@
-/* App.module.css */
 /* ─────────────────────────────────────────────
    Design tokens
 ───────────────────────────────────────────── */
@@ -24,11 +23,6 @@
 @keyframes fadeSlideDown {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes ping {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%       { transform: scale(1.6); opacity: 0; }
 }
 
 @keyframes progressGlow {
@@ -184,7 +178,7 @@
 .dotYellow { background: var(--c-yellow); box-shadow: 0 0 6px rgba(255,204,0,0.5); }
 .dotGreen  { background: var(--c-primary);box-shadow: 0 0 6px rgba(0,255,204,0.5); }
 
-/* Terminal path - Clean, no glitch, no flashing */
+/* Terminal path */
 .terminalPath {
   margin-left: 10px;
   color: var(--c-primary);
@@ -212,23 +206,9 @@
   margin-left: 8px;
   flex-shrink: 0;
 }
-.pingDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--c-primary);
-  box-shadow: 0 0 6px var(--c-primary);
-  animation: ping 2s ease-in-out infinite;
-}
-.pingLabel {
-  font-size: 10px;
-  color: var(--c-primary);
-  letter-spacing: 1.5px;
-  opacity: 0.7;
-}
 
 /* ─────────────────────────────────────────────
-   Navigation - Clean, no flashing animations
+   Navigation
 ───────────────────────────────────────────── */
 .nav {
   display: flex;
@@ -254,7 +234,6 @@
   will-change: transform;
 }
 
-/* Simple hover effect - no shimmer animation */
 .navItem:hover {
   background: var(--c-primary-dim);
   border-color: var(--c-primary);
@@ -266,7 +245,6 @@
   transform: translateY(0);
 }
 
-/* Active state - clean and immediate */
 .navItemActive {
   background: rgba(0, 255, 204, 0.08);
   border-color: var(--c-primary);
@@ -291,6 +269,79 @@
 
 .navItem:hover .navPrompt,
 .navItemActive .navPrompt {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   Dropdown Styles
+───────────────────────────────────────────── */
+.dropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownArrow {
+  font-size: 10px;
+  margin-left: 4px;
+  color: var(--c-muted);
+  transition: transform 0.3s ease;
+}
+
+.dropdownArrowOpen {
+  transform: rotate(180deg);
+  color: var(--c-primary);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 160px;
+  background: rgba(10, 10, 15, 0.98);
+  border: 1px solid var(--c-border);
+  border-top: 2px solid var(--c-primary);
+  padding: 4px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: all 0.2s ease;
+  z-index: 200;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--c-text);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background: rgba(0, 255, 204, 0.08);
+  color: var(--c-primary);
+  padding-left: 20px;
+}
+
+.dropdownItem .navPrompt {
+  opacity: 0.5;
+}
+
+.dropdownItem:hover .navPrompt {
   opacity: 1;
 }
 
@@ -418,6 +469,17 @@
 
   .footer { padding: 30px 16px; }
   .footerText { font-size: 11px; }
+
+  /* Dropdown mobile */
+  .dropdownMenu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    min-width: auto;
+    border-left: none;
+    border-right: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -434,7 +496,6 @@
 @media (prefers-reduced-motion: reduce) {
   .scanlines::after,
   .orb1, .orb2,
-  .pingDot,
   .progressBar,
   .footerCaret,
   .navItem {

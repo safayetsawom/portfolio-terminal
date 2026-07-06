@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Projects.module.css';
 
-const Projects = () => {
+const Projects = ({ onViewAnalytics }) => {
   const projects = [
     {
       name: 'OrangeHRM Automation Suite',
@@ -69,12 +69,21 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className={styles.repoLink}
                   >
-                    <span className={styles.prompt}>▶</span> {project.link.replace('https://', '')}
+                    <span className={styles.prompt}>▶</span> {project.link.replace('https://', '').replace('http://', '')}
                   </a>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Data Analytics Link - Clean & Simple */}
+        <div className={styles.analyticsLinkWrapper}>
+          <span className={styles.prompt}>$</span>
+          <span className={styles.noteText}>View Data Analytics Projects →</span>
+          <button onClick={onViewAnalytics} className={styles.analyticsBtn}>
+            <span className={styles.prompt}>▶</span> /projects/data-analytics
+          </button>
         </div>
         
         <div className={styles.note}>

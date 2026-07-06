@@ -17,6 +17,25 @@ const Thesis = () => {
     { model: 'DenseNet-121', accuracy: '96.89%', highlight: false }
   ];
 
+  // IEEE Paper Details
+  const ieeePaper = {
+    title: '3C-Net: Cervical Cancer Cell Classification from Liquid-Based Cytology Pap Smear Images using Deep Learning Techniques',
+    conference: '2025 IEEE International Conference on Biomedical Engineering, Computer and Information Technology for Health (BECITHCON)',
+    location: 'Eastern University, Dhaka, Bangladesh',
+    year: '2025',
+    pages: '421-426',
+    doi: '10.1109/BECITHCON69222.2025.11504298',
+    link: 'https://ieeexplore.ieee.org/document/11504298',
+    authors: [
+      'M. S. Hossain Sawom',
+      'M. A. Khan',
+      'M. A. Rasheed Zaki',
+      'M. N. F. Ronok',
+      'D. Z. Karim'
+    ],
+    keywords: ['Convolutional Neural Networks (CNN)', 'Cervical Cancer', 'Deep Learning', 'Medical Imaging', 'Explainable AI', 'Performance Analysis']
+  };
+
   return (
     <section className={styles.section} id="thesis">
       <div className={styles.container}>
@@ -56,6 +75,83 @@ const Thesis = () => {
                   <span className={styles.metricLabel}>{metric.label}</span>
                 </div>
               ))}
+            </div>
+            
+            {/* IEEE Paper Section - NEW */}
+            <div className={styles.ieeeSection}>
+              <h4 className={styles.subHeading}>
+                <span className={styles.prompt}>$</span> cat ~/publications/ieee.json | jq '.'
+              </h4>
+              
+              <div className={styles.ieeeCard}>
+                <div className={styles.ieeeHeader}>
+                  <span className={styles.ieeeIcon}>📄</span>
+                  <span className={styles.ieeeBadge}>IEEE Xplore</span>
+                  <span className={styles.ieeeBadge}>Indexed</span>
+                </div>
+                
+                <div className={styles.ieeeBody}>
+                  <p className={styles.ieeeTitle}>{ieeePaper.title}</p>
+                  
+                  <div className={styles.ieeeAuthors}>
+                    {ieeePaper.authors.map((author, idx) => (
+                      <span key={idx} className={styles.ieeeAuthor}>
+                        {author}{idx < ieeePaper.authors.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className={styles.ieeeMeta}>
+                    <span className={styles.ieeeMetaItem}>
+                      <span className={styles.ieeeMetaLabel}>Conference:</span>
+                      {ieeePaper.conference}
+                    </span>
+                    <span className={styles.ieeeMetaItem}>
+                      <span className={styles.ieeeMetaLabel}>Location:</span>
+                      {ieeePaper.location}
+                    </span>
+                    <span className={styles.ieeeMetaItem}>
+                      <span className={styles.ieeeMetaLabel}>Year:</span>
+                      {ieeePaper.year}
+                    </span>
+                    <span className={styles.ieeeMetaItem}>
+                      <span className={styles.ieeeMetaLabel}>Pages:</span>
+                      {ieeePaper.pages}
+                    </span>
+                    <span className={styles.ieeeMetaItem}>
+                      <span className={styles.ieeeMetaLabel}>DOI:</span>
+                      <span className={styles.ieeeDoi}>{ieeePaper.doi}</span>
+                    </span>
+                  </div>
+                  
+                  <div className={styles.ieeeKeywords}>
+                    <span className={styles.ieeeKeywordLabel}>Keywords:</span>
+                    {ieeePaper.keywords.map((keyword, idx) => (
+                      <span key={idx} className={styles.ieeeKeyword}>{keyword}</span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className={styles.ieeeFooter}>
+                  <a 
+                    href={ieeePaper.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.ieeeLink}
+                  >
+                    <span className={styles.prompt}>▶</span> View on IEEE Xplore
+                    <span className={styles.ieeeArrow}>→</span>
+                  </a>
+                  <a 
+                    href={ieeePaper.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.ieeeButton}
+                  >
+                    📖 Read Full Paper
+                  </a>
+                </div>
+              </div>
             </div>
             
             {/* Model Comparison */}
@@ -114,6 +210,7 @@ const Thesis = () => {
           <div className={styles.cardFooter}>
             <span className={styles.prompt}>$</span>
             <span className={styles.status}>status: thesis_completed | BRAC_University | 2025-2026</span>
+            <span className={styles.paperStatus}>| paper: IEEE_Xplore</span>
           </div>
         </div>
         
@@ -128,6 +225,8 @@ const Thesis = () => {
           <span className={styles.tag}>Grad-CAM</span>
           <span className={styles.tag}>LIME</span>
           <span className={styles.tag}>PyTorch</span>
+          <span className={styles.tag}>IEEE</span>
+          <span className={styles.tag}>Scopus</span>
         </div>
       </div>
     </section>

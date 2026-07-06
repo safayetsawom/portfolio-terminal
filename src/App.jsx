@@ -1,5 +1,5 @@
-// App.jsx
 import React, { useEffect, useState, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';  // ← ADD THIS LINE
 import styles from './App.module.css';
 import HeroSection from './components/HeroSection/HeroSection';
 import Education from './components/Education/Education';
@@ -10,34 +10,36 @@ import Certifications from './components/Certifications/Certifications';
 import Extracurricular from './components/Extracurricular/Extracurricular';
 import SoftSkills from './components/SoftSkills/SoftSkills';
 import Contact from './components/Contact/Contact';
+import DataAnalytics from './components/Projects/DataAnalytics';
 import TerminalCursor from './components/TerminalCursor/TerminalCursor';
 
 const NAV_ITEMS = [
-  { id: 'hero',           label: 'home' },
-  { id: 'education',      label: 'edu' },
-  { id: 'skills',         label: 'skills' },
-  { id: 'thesis',         label: 'thesis' },
-  { id: 'projects',       label: 'projects' },
+  { id: 'hero', label: 'home' },
+  { id: 'education', label: 'edu' },
+  { id: 'skills', label: 'skills' },
+  { id: 'thesis', label: 'thesis' },
+  { id: 'projects', label: 'projects', hasDropdown: true },
   { id: 'certifications', label: 'certs' },
-  { id: 'extracurricular',label: 'extra' },
-  { id: 'softskills',     label: 'soft' },
-  { id: 'contact',        label: 'contact' },
+  { id: 'extracurricular', label: 'extra' },
+  { id: 'softskills', label: 'soft' },
+  { id: 'contact', label: 'contact' },
 ];
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
-  const [scrolled, setScrolled]           = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const [footerText, setFooterText]       = useState('');
+  const [footerText, setFooterText] = useState('');
+  const [showDataAnalytics, setShowDataAnalytics] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const footerFull = '© 2026 Md.Safayet Hossain Sawom | All rights reserved';
 
-  /* ── mount animation ── */
   useEffect(() => {
     const t = setTimeout(() => setHeaderVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
 
-  /* ── footer typewriter ── */
   useEffect(() => {
     let i = 0;
     const id = setInterval(() => {
@@ -48,7 +50,6 @@ function App() {
     return () => clearInterval(id);
   }, []);
 
-  /* ── scroll spy + header shadow ── */
   useEffect(() => {
     const HEADER_OFFSET = 80;
     const onScroll = () => {
@@ -68,13 +69,39 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const scrollToSection = (id) => {
+    setShowDataAnalytics(false);
+    setDropdownOpen(false);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const goToDataAnalytics = () => {
+    setShowDataAnalytics(true);
+    setDropdownOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const goToHome = () => {
+    setShowDataAnalytics(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className={styles.app}>
+      {/* Vercel Analytics - Add this line somewhere inside the div */}
+      <Analytics />  {/* ← ADD THIS LINE */}
+
       <div className={styles.scanlines} aria-hidden="true" />
       <div className={styles.orb1} aria-hidden="true" />
       <div className={styles.orb2} aria-hidden="true" />
@@ -84,8 +111,8 @@ function App() {
       <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''} ${headerVisible ? styles.headerVisible : ''}`}>
         <div className={styles.terminalBar}>
           <div className={styles.dots}>
-            <span className={`${styles.terminalDot} ${styles.dotRed}`}   />
-            <span className={`${styles.terminalDot} ${styles.dotYellow}`}/>
+            <span className={`${styles.terminalDot} ${styles.dotRed}`} />
+            <span className={`${styles.terminalDot} ${styles.dotYellow}`} />
             <span className={`${styles.terminalDot} ${styles.dotGreen}`} />
           </div>
 
@@ -93,24 +120,70 @@ function App() {
             safayet@portfolio:~
           </span>
 
-          <div className={styles.headerAccent} aria-hidden="true">
-            {/* <span className={styles.pingDot} />
-            <span className={styles.pingLabel}>ONLINE</span> */}
-          </div>
+          <div className={styles.headerAccent} aria-hidden="true" />
 
           <nav className={styles.nav} aria-label="Portfolio navigation">
-            {NAV_ITEMS.map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className={`${styles.navItem} ${activeSection === id ? styles.navItemActive : ''}`}
-                aria-current={activeSection === id ? 'true' : undefined}
-              >
-                <span className={styles.navPrompt}>$</span>
-                <span className={styles.navLabel}>{label}</span>
-                {activeSection === id && <span className={styles.activeBar} />}
-              </button>
-            ))}
+            {NAV_ITEMS.map(({ id, label, hasDropdown }) => {
+              if (hasDropdown) {
+                return (
+                  <div 
+                    key={id} 
+                    className={styles.dropdownWrapper} 
+                    ref={dropdownRef}
+                  >
+                    <button
+                      onClick={() => {
+                        if (dropdownOpen) {
+                          setDropdownOpen(false);
+                          scrollToSection(id);
+                        } else {
+                          setDropdownOpen(true);
+                        }
+                      }}
+                      className={`${styles.navItem} ${activeSection === id ? styles.navItemActive : ''}`}
+                    >
+                      <span className={styles.navPrompt}>$</span>
+                      <span className={styles.navLabel}>{label}</span>
+                      <span className={`${styles.dropdownArrow} ${dropdownOpen ? styles.dropdownArrowOpen : ''}`}>▾</span>
+                      {activeSection === id && <span className={styles.activeBar} />}
+                    </button>
+                    
+                    <div className={`${styles.dropdownMenu} ${dropdownOpen ? styles.dropdownOpen : ''}`}>
+                      <button
+                        onClick={() => scrollToSection('projects')}
+                        className={styles.dropdownItem}
+                      >
+                        <span className={styles.navPrompt}>$</span>
+                        <span>all projects</span>
+                      </button>
+                      <button
+                        onClick={goToDataAnalytics}
+                        className={styles.dropdownItem}
+                      >
+                        <span className={styles.navPrompt}>$</span>
+                        <span>analytics</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <button
+                  key={id}
+                  onClick={() => {
+                    setShowDataAnalytics(false);
+                    scrollToSection(id);
+                  }}
+                  className={`${styles.navItem} ${activeSection === id ? styles.navItemActive : ''}`}
+                  aria-current={activeSection === id ? 'true' : undefined}
+                >
+                  <span className={styles.navPrompt}>$</span>
+                  <span className={styles.navLabel}>{label}</span>
+                  {activeSection === id && <span className={styles.activeBar} />}
+                </button>
+              );
+            })}
           </nav>
         </div>
 
@@ -125,15 +198,21 @@ function App() {
       </header>
 
       <main className={styles.main}>
-        <HeroSection />
-        <Education />
-        <Skills />
-        <Thesis />
-        <Projects />
-        <Certifications />
-        <Extracurricular />
-        <SoftSkills />
-        <Contact />
+        {showDataAnalytics ? (
+          <DataAnalytics onBack={goToHome} />
+        ) : (
+          <>
+            <HeroSection />
+            <Education />
+            <Skills />
+            <Thesis />
+            <Projects onViewAnalytics={goToDataAnalytics} />
+            <Certifications />
+            <Extracurricular />
+            <SoftSkills />
+            <Contact />
+          </>
+        )}
       </main>
 
       <footer className={styles.footer}>

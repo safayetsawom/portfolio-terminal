@@ -94,9 +94,15 @@
   color: #00ffcc;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
 .toggleButton {
-  display: block;
-  margin: 40px auto 0;
   background: transparent;
   border: 1px solid #1a1a2e;
   color: #00ffcc;
@@ -111,6 +117,18 @@
   border-color: #00ffcc;
   background: rgba(0, 255, 204, 0.05);
   box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+}
+
+.certStats {
+  padding: 8px 16px;
+  background: rgba(0, 255, 204, 0.03);
+  border-left: 3px solid #00ffcc;
+  font-size: 13px;
+  color: #666;
+}
+
+.statsText {
+  color: #e0e0e0;
 }
 
 @media (max-width: 768px) {
@@ -148,5 +166,10 @@
   .toggleButton {
     padding: 10px 18px;
     font-size: 12px;
+  }
+
+  .certStats {
+    font-size: 11px;
+    padding: 6px 12px;
   }
 }
