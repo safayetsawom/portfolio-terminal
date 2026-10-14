@@ -30,7 +30,7 @@ const HeroSection = () => {
               <pre>{`<!-- -->`}</pre>
             </div>
             <div className={styles.hexagon}>
-              {/* The scanline div has been REMOVED from here */}
+              <div className={styles.scanline}></div>
               <img 
                 src="/profile.png" 
                 alt="MD. Safayet Hossain Sawom"
@@ -60,10 +60,10 @@ const HeroSection = () => {
                   <span className={styles.prompt}>$</span> role --verbose
                 </p>
                 <p className={styles.output}>
-                  I’m a BRAC University CSE graduate who loves to transform ideas into functional software. <br />
-                  Backend Developer & Test Engineer. I transform ideas into<br />
-                  functional software—then break it intentionally to make it stronger.<br />
-                  Cross-functional mindset spanning development, QA, and automation.
+                  I'm a BRAC University CSE graduate passionate about software development, AI research, and automation. <br />
+                  With experience in Python, backend development, data analytics, and deep learning, I enjoy building <br />
+                  intelligent applications and exploring AI-driven solutions to real-world problems. <br />
+                  I combine development, research, and software testing to create reliable, efficient, and impactful solutions.
                 </p>
 
                 <p className={styles.command}>

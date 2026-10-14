@@ -4,6 +4,18 @@ import styles from './Projects.module.css';
 const Projects = ({ onViewAnalytics }) => {
   const projects = [
     {
+      name: 'Full-Stack E-Commerce & Inventory System',
+      description: 'Production-style e-commerce platform with JWT auth, role-based access, inventory management, guest checkout, and admin dashboard. Built with FastAPI, PostgreSQL, and React 19. Includes atomic order transactions, signed Cloudinary uploads, and 23 automated tests running in CI.',
+      tech: ['React 19', 'FastAPI', 'PostgreSQL', 'Docker', 'Tailwind'],
+      link: 'https://github.com/safayetsawom/ecommerce-fullstack'
+    },
+    {
+      name: 'Robust EV Charging Demand Prediction (Federated Learning)',
+      description: 'Research prototype comparing centralized and federated learning (FedAvg) for next-hour EV charging demand prediction across 3 simulated stations. Tests resilience to communication failures where stations drop out of training rounds. Key finding: FedAvg lagged centralized training on non-IID data, and disconnected stations saw rising error rates.',
+      tech: ['Python', 'PyTorch', 'Federated Learning', 'MLP', 'Simulation'],
+      link: 'https://github.com/safayetsawom/robust-ev-federated-learning'
+    },
+    {
       name: 'OrangeHRM Automation Suite',
       description: 'Python + Selenium + pytest POM framework for end-to-end HR workflow testing. 7 automated test cases with reusable page objects, test plan, RTM and Jira-style bug reports.',
       tech: ['Python', 'Selenium', 'pytest', 'GitHub Actions'],
@@ -77,11 +89,10 @@ const Projects = ({ onViewAnalytics }) => {
           ))}
         </div>
         
-        {/* Data Analytics Link - Clean & Simple */}
-        <div className={styles.analyticsLinkWrapper}>
+        <div className={styles.analyticsNav}>
           <span className={styles.prompt}>$</span>
           <span className={styles.noteText}>View Data Analytics Projects →</span>
-          <button onClick={onViewAnalytics} className={styles.analyticsBtn}>
+          <button onClick={onViewAnalytics} className={styles.analyticsLink}>
             <span className={styles.prompt}>▶</span> /projects/data-analytics
           </button>
         </div>

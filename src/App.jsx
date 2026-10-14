@@ -80,7 +80,6 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768 && mobileMenuOpen) {
@@ -91,7 +90,6 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -127,6 +125,7 @@ function App() {
 
       <TerminalCursor />
 
+      {/* HEADER - only terminal bar, no mobile menu inside */}
       <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''} ${headerVisible ? styles.headerVisible : ''}`}>
         <div className={styles.terminalBar}>
           <div className={styles.dots}>
@@ -206,7 +205,7 @@ function App() {
             })}
           </nav>
 
-          {/* Mobile hamburger button */}
+          {/* Hamburger */}
           <button
             className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -218,59 +217,58 @@ function App() {
             <span></span>
           </button>
         </div>
-
-        {/* Mobile slide-out menu */}
-        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
-          <div className={styles.mobileMenuHeader}>
-            <span className={styles.mobileMenuPrompt}>$ cd /navigation</span>
-            <button
-              className={styles.mobileMenuClose}
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className={styles.mobileMenuItems}>
-            {NAV_ITEMS.map(({ id, label, hasDropdown }) => (
-              <div key={id}>
-                <button
-                  onClick={() => {
-                    setShowDataAnalytics(false);
-                    scrollToSection(id);
-                  }}
-                  className={`${styles.mobileNavItem} ${activeSection === id ? styles.mobileNavItemActive : ''}`}
-                >
-                  <span className={styles.navPrompt}>$</span>
-                  <span>{label}</span>
-                  {activeSection === id && <span className={styles.mobileActiveDot} />}
-                </button>
-
-                {/* Show sub-items for projects inside mobile menu */}
-                {hasDropdown && (
-                  <div className={styles.mobileSubItems}>
-                    <button
-                      onClick={goToDataAnalytics}
-                      className={styles.mobileSubItem}
-                    >
-                      <span className={styles.navPrompt}>$</span>
-                      <span>analytics</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.mobileMenuFooter}>
-            <span className={styles.navPrompt}>$</span>
-            <span>echo "navigate to explore"</span>
-          </div>
-        </div>
       </header>
 
-      {/* Mobile menu backdrop */}
+      {/* MOBILE MENU - OUTSIDE header so it's not clipped */}
+      <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        <div className={styles.mobileMenuHeader}>
+          <span className={styles.mobileMenuPrompt}>$ cd /navigation</span>
+          <button
+            className={styles.mobileMenuClose}
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className={styles.mobileMenuItems}>
+          {NAV_ITEMS.map(({ id, label, hasDropdown }) => (
+            <div key={id}>
+              <button
+                onClick={() => {
+                  setShowDataAnalytics(false);
+                  scrollToSection(id);
+                }}
+                className={`${styles.mobileNavItem} ${activeSection === id ? styles.mobileNavItemActive : ''}`}
+              >
+                <span className={styles.navPrompt}>$</span>
+                <span>{label}</span>
+                {activeSection === id && <span className={styles.mobileActiveDot} />}
+              </button>
+
+              {hasDropdown && (
+                <div className={styles.mobileSubItems}>
+                  <button
+                    onClick={goToDataAnalytics}
+                    className={styles.mobileSubItem}
+                  >
+                    <span className={styles.navPrompt}>$</span>
+                    <span>analytics</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.mobileMenuFooter}>
+          <span className={styles.navPrompt}>$</span>
+          <span>echo "navigate to explore"</span>
+        </div>
+      </div>
+
+      {/* Backdrop - OUTSIDE header */}
       {mobileMenuOpen && (
         <div
           className={styles.mobileBackdrop}
@@ -279,6 +277,7 @@ function App() {
         />
       )}
 
+      {/* Progress bar - OUTSIDE header */}
       <div className={styles.progressTrack} aria-hidden="true">
         <div
           className={styles.progressBar}

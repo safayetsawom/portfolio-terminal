@@ -47,6 +47,11 @@
   50%, 100%{ opacity: 0; }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ─────────────────────────────────────────────
    App shell
 ───────────────────────────────────────────── */
@@ -62,7 +67,6 @@
   overflow-x: hidden;
 }
 
-/* Scan-line sweep */
 .scanlines {
   pointer-events: none;
   position: fixed;
@@ -80,7 +84,6 @@
   animation: scanline 6s linear infinite;
 }
 
-/* Ambient orbs */
 .orb1,
 .orb2 {
   pointer-events: none;
@@ -117,7 +120,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 500;
   background: rgba(10, 10, 15, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -145,9 +148,6 @@
     0 1px 0 rgba(0,255,204,0.08);
 }
 
-/* ─────────────────────────────────────────────
-   Terminal bar
-───────────────────────────────────────────── */
 .terminalBar {
   display: flex;
   align-items: center;
@@ -158,7 +158,6 @@
   min-height: var(--header-h);
 }
 
-/* Window dots */
 .dots {
   display: flex;
   gap: 6px;
@@ -179,7 +178,6 @@
 .dotYellow { background: var(--c-yellow); box-shadow: 0 0 6px rgba(255,204,0,0.5); }
 .dotGreen  { background: var(--c-primary);box-shadow: 0 0 6px rgba(0,255,204,0.5); }
 
-/* Terminal path */
 .terminalPath {
   margin-left: 10px;
   color: var(--c-primary);
@@ -200,7 +198,6 @@
   color: var(--c-muted);
 }
 
-/* Online badge */
 .headerAccent {
   display: flex;
   align-items: center;
@@ -210,7 +207,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Navigation (desktop)
+   Desktop Navigation
 ───────────────────────────────────────────── */
 .nav {
   display: flex;
@@ -355,7 +352,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Hamburger button (mobile)
+   Hamburger
 ───────────────────────────────────────────── */
 .hamburger {
   display: none;
@@ -370,6 +367,7 @@
   padding: 0;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  z-index: 600;
 }
 
 .hamburger:hover {
@@ -405,9 +403,10 @@
 }
 
 /* ─────────────────────────────────────────────
-   Mobile menu
+   Mobile Menu (OUTSIDE header)
 ───────────────────────────────────────────── */
 .mobileMenu {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
@@ -420,8 +419,7 @@
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
   transform: translateX(100%);
   transition: transform 0.35s var(--ease-snappy);
-  z-index: 300;
-  display: flex;
+  z-index: 700;
   flex-direction: column;
   overflow-y: auto;
 }
@@ -552,15 +550,14 @@
   flex-shrink: 0;
 }
 
-/* Backdrop */
 .mobileBackdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: 250;
-  animation: fadeSlideDown 0.2s ease;
+  z-index: 650;
+  animation: fadeIn 0.2s ease;
 }
 
 /* ─────────────────────────────────────────────
@@ -655,14 +652,11 @@
 /* ─────────────────────────────────────────────
    Responsive
 ───────────────────────────────────────────── */
-
-/* Tablet: nav gets a bit tighter but stays inline */
 @media (max-width: 1024px) {
   .terminalBar { padding: 10px 16px; gap: 8px; }
   .navItem { padding: 5px 10px; font-size: 11px; }
 }
 
-/* Mobile: switch to hamburger */
 @media (max-width: 768px) {
   :root { --header-h: 56px; }
 
@@ -676,6 +670,7 @@
   /* Hide desktop nav, show hamburger */
   .nav { display: none; }
   .hamburger { display: block; }
+  .mobileMenu { display: flex; }
 
   .terminalDot { width: 10px; height: 10px; }
   .headerAccent { display: none; }
