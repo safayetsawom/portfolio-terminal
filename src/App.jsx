@@ -125,7 +125,6 @@ function App() {
 
       <TerminalCursor />
 
-      {/* HEADER - only terminal bar, no mobile menu inside */}
       <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''} ${headerVisible ? styles.headerVisible : ''}`}>
         <div className={styles.terminalBar}>
           <div className={styles.dots}>
@@ -140,7 +139,6 @@ function App() {
 
           <div className={styles.headerAccent} aria-hidden="true" />
 
-          {/* Desktop nav */}
           <nav className={styles.nav} aria-label="Portfolio navigation">
             {NAV_ITEMS.map(({ id, label, hasDropdown }) => {
               if (hasDropdown) {
@@ -205,7 +203,6 @@ function App() {
             })}
           </nav>
 
-          {/* Hamburger */}
           <button
             className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -219,7 +216,6 @@ function App() {
         </div>
       </header>
 
-      {/* MOBILE MENU - OUTSIDE header so it's not clipped */}
       <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <div className={styles.mobileMenuHeader}>
           <span className={styles.mobileMenuPrompt}>$ cd /navigation</span>
@@ -268,7 +264,6 @@ function App() {
         </div>
       </div>
 
-      {/* Backdrop - OUTSIDE header */}
       {mobileMenuOpen && (
         <div
           className={styles.mobileBackdrop}
@@ -277,7 +272,6 @@ function App() {
         />
       )}
 
-      {/* Progress bar - OUTSIDE header */}
       <div className={styles.progressTrack} aria-hidden="true">
         <div
           className={styles.progressBar}

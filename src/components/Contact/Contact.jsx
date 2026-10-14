@@ -46,20 +46,20 @@ const Contact = () => {
           </div>
         </div>
         
-<div className={styles.signature}>
-  <pre className={styles.nameAscii}>
+        <div className={styles.signature}>
+          <pre className={styles.nameAscii}>
 {`
-    ███████╗ █████╗  ███████╗  █████╗  ██╗   ██╗ ███████╗ ████████╗
-    ██╔════╝ ██╔══██╗ ██╔════╝ ██╔══██╗ ╚██╗ ██╔╝ ██╔════╝ ╚══██╔══╝
-    ███████╗ ███████║ █████╗   ███████║  ╚████╔╝  █████╗      ██║   
-    ╚════██║ ██╔══██║ ██╔══╝   ██╔══██║   ╚██╔╝   ██╔══╝      ██║   
-    ███████║ ██║  ██║ ██║      ██║  ██║    ██║    ███████╗    ██║   
-    ╚══════╝ ╚═╝  ╚═╝ ╚═╝      ╚═╝  ╚═╝    ╚═╝    ╚══════╝    ╚═╝   
+███████╗ █████╗ ███████╗ █████╗ ██╗   ██╗ ███████╗████████╗
+██╔════╝██╔══██╗██╔════╝██╔══██╗╚██╗ ██╔╝ ██╔════╝╚══██╔══╝
+███████╗███████║█████╗  ███████║ ╚████╔╝  █████╗     ██║   
+╚════██║██╔══██║██╔══╝  ██╔══██║  ╚██╔╝   ██╔══╝     ██║   
+███████║██║  ██║██║     ██║  ██║   ██║    ███████╗   ██║   
+╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝   ╚═╝    ╚══════╝   ╚═╝   
 `}
-  </pre>
-  <div className={styles.signatureLine}>
-    <span className={styles.prompt}>$</span> echo "MD.SAFAYET HOSSAIN SAWOM"  
-  </div>
+          </pre>
+          <div className={styles.signatureLine}>
+            <span className={styles.prompt}>$</span> echo "MD.SAFAYET HOSSAIN SAWOM"  
+          </div>
         </div>
       </div>
     </section>

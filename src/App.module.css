@@ -406,7 +406,7 @@
    Mobile Menu (OUTSIDE header)
 ───────────────────────────────────────────── */
 .mobileMenu {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   right: 0;
@@ -422,10 +422,12 @@
   z-index: 700;
   flex-direction: column;
   overflow-y: auto;
+  pointer-events: none;
 }
 
 .mobileMenuOpen {
   transform: translateX(0);
+  pointer-events: auto;
 }
 
 .mobileMenuHeader {
@@ -667,10 +669,8 @@
   .terminalPath::before,
   .terminalPath::after { display: none; }
 
-  /* Hide desktop nav, show hamburger */
   .nav { display: none; }
   .hamburger { display: block; }
-  .mobileMenu { display: flex; }
 
   .terminalDot { width: 10px; height: 10px; }
   .headerAccent { display: none; }
