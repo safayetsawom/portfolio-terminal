@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Analytics } from '@vercel/analytics/react';  // ← ADD THIS LINE
+import { Analytics } from '@vercel/analytics/react';
 import styles from './App.module.css';
 import HeroSection from './components/HeroSection/HeroSection';
 import Education from './components/Education/Education';
@@ -32,6 +32,7 @@ function App() {
   const [footerText, setFooterText] = useState('');
   const [showDataAnalytics, setShowDataAnalytics] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const footerFull = '© 2026 Md.Safayet Hossain Sawom | All rights reserved';
 
@@ -79,9 +80,27 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (id) => {
     setShowDataAnalytics(false);
     setDropdownOpen(false);
+    setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -89,6 +108,7 @@ function App() {
   const goToDataAnalytics = () => {
     setShowDataAnalytics(true);
     setDropdownOpen(false);
+    setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -99,8 +119,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      {/* Vercel Analytics - Add this line somewhere inside the div */}
-      <Analytics />  {/* ← ADD THIS LINE */}
+      <Analytics />
 
       <div className={styles.scanlines} aria-hidden="true" />
       <div className={styles.orb1} aria-hidden="true" />
@@ -122,13 +141,14 @@ function App() {
 
           <div className={styles.headerAccent} aria-hidden="true" />
 
+          {/* Desktop nav */}
           <nav className={styles.nav} aria-label="Portfolio navigation">
             {NAV_ITEMS.map(({ id, label, hasDropdown }) => {
               if (hasDropdown) {
                 return (
-                  <div 
-                    key={id} 
-                    className={styles.dropdownWrapper} 
+                  <div
+                    key={id}
+                    className={styles.dropdownWrapper}
                     ref={dropdownRef}
                   >
                     <button
@@ -147,7 +167,7 @@ function App() {
                       <span className={`${styles.dropdownArrow} ${dropdownOpen ? styles.dropdownArrowOpen : ''}`}>▾</span>
                       {activeSection === id && <span className={styles.activeBar} />}
                     </button>
-                    
+
                     <div className={`${styles.dropdownMenu} ${dropdownOpen ? styles.dropdownOpen : ''}`}>
                       <button
                         onClick={() => scrollToSection('projects')}
@@ -185,17 +205,88 @@ function App() {
               );
             })}
           </nav>
+
+          {/* Mobile hamburger button */}
+          <button
+            className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
 
-        <div className={styles.progressTrack} aria-hidden="true">
-          <div
-            className={styles.progressBar}
-            style={{
-              width: `${(NAV_ITEMS.findIndex(n => n.id === activeSection) + 1) / NAV_ITEMS.length * 100}%`
-            }}
-          />
+        {/* Mobile slide-out menu */}
+        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          <div className={styles.mobileMenuHeader}>
+            <span className={styles.mobileMenuPrompt}>$ cd /navigation</span>
+            <button
+              className={styles.mobileMenuClose}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className={styles.mobileMenuItems}>
+            {NAV_ITEMS.map(({ id, label, hasDropdown }) => (
+              <div key={id}>
+                <button
+                  onClick={() => {
+                    setShowDataAnalytics(false);
+                    scrollToSection(id);
+                  }}
+                  className={`${styles.mobileNavItem} ${activeSection === id ? styles.mobileNavItemActive : ''}`}
+                >
+                  <span className={styles.navPrompt}>$</span>
+                  <span>{label}</span>
+                  {activeSection === id && <span className={styles.mobileActiveDot} />}
+                </button>
+
+                {/* Show sub-items for projects inside mobile menu */}
+                {hasDropdown && (
+                  <div className={styles.mobileSubItems}>
+                    <button
+                      onClick={goToDataAnalytics}
+                      className={styles.mobileSubItem}
+                    >
+                      <span className={styles.navPrompt}>$</span>
+                      <span>analytics</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.mobileMenuFooter}>
+            <span className={styles.navPrompt}>$</span>
+            <span>echo "navigate to explore"</span>
+          </div>
         </div>
       </header>
+
+      {/* Mobile menu backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className={styles.mobileBackdrop}
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <div className={styles.progressTrack} aria-hidden="true">
+        <div
+          className={styles.progressBar}
+          style={{
+            width: `${(NAV_ITEMS.findIndex(n => n.id === activeSection) + 1) / NAV_ITEMS.length * 100}%`
+          }}
+        />
+      </div>
 
       <main className={styles.main}>
         {showDataAnalytics ? (

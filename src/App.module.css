@@ -153,8 +153,9 @@
   align-items: center;
   padding: 10px 24px;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   animation: fadeSlideDown 0.5s var(--ease-snappy) 0.1s both;
+  min-height: var(--header-h);
 }
 
 /* Window dots */
@@ -188,14 +189,15 @@
   flex-shrink: 0;
   background: transparent;
   display: inline-block;
+  white-space: nowrap;
 }
-.terminalPath::before { 
-  content: "┌─["; 
-  color: var(--c-muted); 
+.terminalPath::before {
+  content: "┌─[";
+  color: var(--c-muted);
 }
-.terminalPath::after {  
-  content: "]─$"; 
-  color: var(--c-muted); 
+.terminalPath::after {
+  content: "]─$";
+  color: var(--c-muted);
 }
 
 /* Online badge */
@@ -208,14 +210,18 @@
 }
 
 /* ─────────────────────────────────────────────
-   Navigation
+   Navigation (desktop)
 ───────────────────────────────────────────── */
 .nav {
   display: flex;
   margin-left: auto;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.nav::-webkit-scrollbar { display: none; }
 
 .navItem {
   position: relative;
@@ -232,6 +238,8 @@
   border-radius: 2px;
   overflow: hidden;
   will-change: transform;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .navItem:hover {
@@ -273,11 +281,12 @@
 }
 
 /* ─────────────────────────────────────────────
-   Dropdown Styles
+   Dropdown (desktop)
 ───────────────────────────────────────────── */
 .dropdownWrapper {
   position: relative;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .dropdownArrow {
@@ -346,14 +355,229 @@
 }
 
 /* ─────────────────────────────────────────────
+   Hamburger button (mobile)
+───────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--c-border);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  border-color: var(--c-primary);
+  background: var(--c-primary-dim);
+}
+
+.hamburger span {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background: var(--c-primary);
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(-50%);
+}
+
+.hamburger span:nth-child(1) { top: 12px; }
+.hamburger span:nth-child(2) { top: 19px; }
+.hamburger span:nth-child(3) { top: 26px; }
+
+.hamburgerOpen span:nth-child(1) {
+  top: 19px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+.hamburgerOpen span:nth-child(3) {
+  top: 19px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* ─────────────────────────────────────────────
+   Mobile menu
+───────────────────────────────────────────── */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(85vw, 340px);
+  background: rgba(10, 10, 15, 0.99);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--c-primary);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
+  transform: translateX(100%);
+  transition: transform 0.35s var(--ease-snappy);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.mobileMenuOpen {
+  transform: translateX(0);
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--c-border);
+  background: rgba(0, 255, 204, 0.04);
+  flex-shrink: 0;
+}
+
+.mobileMenuPrompt {
+  color: var(--c-primary);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.mobileMenuClose {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--c-border);
+  color: var(--c-primary);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileMenuClose:hover {
+  border-color: var(--c-primary);
+  background: var(--c-primary-dim);
+}
+
+.mobileMenuItems {
+  flex: 1;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  color: var(--c-text);
+  padding: 14px 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  text-transform: lowercase;
+}
+
+.mobileNavItem:hover,
+.mobileNavItem:active {
+  background: rgba(0, 255, 204, 0.06);
+  color: var(--c-primary);
+  padding-left: 26px;
+}
+
+.mobileNavItemActive {
+  background: rgba(0, 255, 204, 0.08);
+  border-left-color: var(--c-primary);
+  color: var(--c-primary);
+}
+
+.mobileActiveDot {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  box-shadow: 0 0 8px var(--c-primary);
+}
+
+.mobileSubItems {
+  padding-left: 20px;
+  border-left: 1px dashed var(--c-border);
+  margin-left: 20px;
+}
+
+.mobileSubItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--c-muted);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  text-transform: lowercase;
+}
+
+.mobileSubItem:hover,
+.mobileSubItem:active {
+  color: var(--c-primary);
+  padding-left: 20px;
+}
+
+.mobileMenuFooter {
+  padding: 14px 20px;
+  border-top: 1px solid var(--c-border);
+  color: var(--c-muted);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Backdrop */
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 250;
+  animation: fadeSlideDown 0.2s ease;
+}
+
+/* ─────────────────────────────────────────────
    Progress bar
 ───────────────────────────────────────────── */
 .progressTrack {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
   height: 2px;
   background: rgba(0,255,204,0.06);
-  position: relative;
   overflow: hidden;
+  z-index: 99;
+  pointer-events: none;
 }
+
 .progressBar {
   height: 100%;
   background: linear-gradient(90deg, var(--c-primary), var(--c-blue));
@@ -361,6 +585,7 @@
   animation: progressGlow 2s ease-in-out infinite;
   position: relative;
 }
+
 .progressBar::after {
   content: '';
   position: absolute;
@@ -430,63 +655,39 @@
 /* ─────────────────────────────────────────────
    Responsive
 ───────────────────────────────────────────── */
+
+/* Tablet: nav gets a bit tighter but stays inline */
 @media (max-width: 1024px) {
-  .nav {
-    margin-left: 0;
-    margin-top: 8px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  .terminalBar { padding: 10px 16px; }
+  .terminalBar { padding: 10px 16px; gap: 8px; }
+  .navItem { padding: 5px 10px; font-size: 11px; }
 }
 
+/* Mobile: switch to hamburger */
 @media (max-width: 768px) {
+  :root { --header-h: 56px; }
+
   .terminalPath {
-    font-size: 10px;
+    font-size: 11px;
     margin-left: 6px;
   }
   .terminalPath::before,
   .terminalPath::after { display: none; }
 
-  .nav {
-    gap: 4px;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .nav::-webkit-scrollbar { display: none; }
-
-  .navItem {
-    padding: 5px 10px;
-    font-size: 11px;
-    white-space: nowrap;
-  }
+  /* Hide desktop nav, show hamburger */
+  .nav { display: none; }
+  .hamburger { display: block; }
 
   .terminalDot { width: 10px; height: 10px; }
   .headerAccent { display: none; }
 
   .footer { padding: 30px 16px; }
   .footerText { font-size: 11px; }
-
-  /* Dropdown mobile */
-  .dropdownMenu {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    min-width: auto;
-    border-left: none;
-    border-right: none;
-  }
 }
 
 @media (max-width: 480px) {
   .terminalBar { padding: 8px 12px; }
-  .terminalPath { font-size: 9px; }
-  .navItem { padding: 4px 8px; font-size: 10px; }
-  .navPrompt { margin-right: 3px; }
+  .terminalPath { font-size: 10px; }
+  .terminalDot { width: 9px; height: 9px; }
   .orb1, .orb2 { opacity: 0.04; }
 }
 
@@ -498,8 +699,10 @@
   .orb1, .orb2,
   .progressBar,
   .footerCaret,
-  .navItem {
+  .navItem,
+  .mobileMenu {
     animation: none;
+    transition: none;
   }
 
   .navItem {
